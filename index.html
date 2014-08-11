@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="themes/Surfing.min.css" /> 
+	
+	
+	<!-- DEFAULT STYLING *******************************************************************-->
+	<!--
+	 <link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+	
+	-->
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
+	
+	
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="formatacao.css" />
+	
+	
+	<script type="text/javascript" charset="utf-8">
+	document.addEventListener("deviceready", onDeviceReady, true); 
+	</script>
+	
+<script>
+        $(function() {
+
+            $("#enviadatos").click(function() {
+                var bdpes_foto = $("#pes_foto").val();
+				var bdpes_nome = $("#pes_nome").val();
+				var bdpes_pes_tipo_id = $("#pes_pes_tipo_id").val();
+				var bdpes_dnsc = $("#pes_dnsc").val();
+				var bdpes_sexo = $("#pes_sexo").val();
+				var bdpes_user = $("#pes_user").val();
+				var bdpes_password = $("#pes_password").val();
+				var bdpes_nivel = $("#pes_nivel").val();
+				var bdpes_limitacao = $("#pes_limitacao").val();
+			
+				$("#pes_foto").val(" ");
+				$("#pes_nome").val(" ");
+				$("#pes_pes_tipo_id").val(" ");
+				$("#pes_dnsc").val(" ");
+				$("#pes_sexo").val(" ");
+				$("#pes_user").val(" ");
+				$("#pes_password").val(" ");
+				$("#pes_nivel").val(" ");
+				$("#pes_limitacao").val(" ");
+		
+                    $.ajax({
+                      type: "POST",
+                      url: "http://193.137.46.12/bidi2014/tsilva/interface_movel/InserirPHP/InserirPessoa.php",
+                      data: ({pes_foto: bdpes_foto,
+							  pes_nome: bdpes_nome,					  
+							  pes_pes_tipo_id: bdpes_pes_tipo_id,	
+							  pes_dnsc: bdpes_dnsc,	
+							  pes_sexo: bdpes_sexo,	
+							  pes_user: bdpes_user,	
+							  pes_password: bdpes_password,	
+							  pes_nivel: bdpes_nivel,	
+							  pes_limitacao: bdpes_limitacao}),
+                      cache: false,
+                      dataType: "text",
+                      success: onSuccess
+                    });
+                
+            });
+
+        
+            function onSuccess(data)
+            {
+				alert(data+"Inscrição realizada com sucesso");
+            }
+
+        });
+    </script>
+
+</head>
+
+<body id="body1"> 
+
+
+
+
+<div data-role="page" id="page1">
+    <div data-role="header"   data-theme="a">
+        <h6>Bem-Vindo</h6>
+    </div>
+    <div data-role="content" >
+        
+        <center><p><a href="#page2" data-transition="flip" data-role="button" data-inline="true" data-theme="c" data-rel="dialog">Login</a></p> </center>	
+		<center><p><a href="#page3" data-transition="flip" data-role="button" data-inline="true" data-theme="c" data-rel="dialog">Inscrever-se</a></p> </center>	
+    </div>
+    <div data-role="footer" data-position="fixed" >
+        <h2>PFC - EB/SIS - 090248118 - Tiago Silva</h2>
+    </div>
+</div>
+
+
+<div data-role="page" id="page2" >
+    <div data-role="header" data-theme="b" >
+       
+        <h6>Login</h6>
+        <a href="#page1" data-role="button" data-icon="delete">Back</a>
+    </div>
+	
+    <div data-role="content" data-theme="b" >
+	       <form id="loginForm">
+		   <div data-role="fieldcontain" class="ui-hide-label">
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="username" value="" placeholder="Username" />
+		   </div>
+		   <div data-role="fieldcontain" class="ui-hide-label">            
+		   <label for="password">Password:</label>
+				<input type="password" name="password" id="password" value="" placeholder="Password" />
+		   </div>
+
+        <input type="submit" value="Login" id="submitButton">
+		<p/>
+			<a href="#pagerecuperacaoSenha" data-transition="flip"  data-theme="c" data-rel="dialog"><br>Esqueceste-te da tua palavra-passe?</br></a>
+        </form>
+	
+
+	
+	
+	</div>
+
+</div>
+
+
+<div data-role="page" id="page3" >
+    <div data-role="header" data-theme="b">
+       
+        <h6>Inscrição</h6>
+        <a href="#page1" data-role="button" data-icon="delete">Back</a>
+    </div>
+
+	
+<div data-role="content">
+         
+   
+   	
+          <label for="pes_nome">Nome:</label>
+          <input type="text" name="pes_nome" id="pes_nome" value=""  />
+  
+   
+  
+          <label for="pes_pes_tipo_id">Função:</label>
+          <input type="text" name="pes_pes_tipo_id" id="pes_pes_tipo_id" value=""  />
+   
+   
+          <label for="pes_dnsc">Data Nascimento:</label>
+          <input type="date" name="pes_dnsc" id="pes_dnsc" value=""  />
+   
+   
+  
+		
+			<label for="pes_sexo">Sexo:</label>
+          <input type="text" name="pes_sexo" id="pes_sexo" value=""  />
+   
+   
+   
+   
+          <label for="pes_user">Email:</label>
+          <input type="text" name="pes_user" id="pes_user" value=""  />
+   
+   
+          <label for="pes_password">Password:</label>
+          <input type="text" name="pes_password" id="pes_password" value=""  />
+  
+   
+   
+   
+          
+          <input type="hidden" name="pes_nivel" id="pes_nivel" value="1"  />
+   
+            
+
+                  
+   
+          <label for="pes_limitacao">Limitação:</label>
+          <input type="text" name="pes_limitacao" id="pes_limitacao" value=""  />
+   
+  
+
+ 
+	 
+	 	<input type="submit" value="submit" data-inline="true" id="enviadatos" >
+		<input type="reset" value="reset"  data-inline="true" >
+        
+		
+		</div>
+		
+		
+
+	
+</div>
+
+<div data-role="page" id="pagerecuperacaoSenha" >
+    <div data-role="header" data-theme="b">
+       
+        <h6>Recuperar Senha</h6>
+        <a href="#page1" data-role="button" data-icon="delete">Back</a>
+    </div>
+
+	
+		<div data-role="content"  >
+
+			
+			<form action="recuperarSenha.php" method="post" id="passwd" style="">
+				<p><input id="email" name="email" type="text" placeholder="Email to get Password"></p>
+				<input name="action" type="hidden" value="password"><p></p>
+				<p><input type="submit" value="Reset Password"></p>
+			  </form>
+
+		</div>
+		
+		
+
+	
+</div>
+
+
+
+
+</body>
+</html>
